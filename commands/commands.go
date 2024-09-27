@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"task-tracker/models"
+	"tasker/models"
 	"time"
 )
 
@@ -20,7 +20,7 @@ func Add(desc string) error {
 	}
 	task := models.Task{
 		Description: desc,
-		Status:      models.StatusTodo,
+		Status:      "todo",
 		CreatedAt:   time.Now(),
 	}
 	if len(tasks) > 0 {
@@ -87,7 +87,7 @@ func printTasksFilteredByStatus(status string) error {
 	}
 	filteredTasks := []models.Task{}
 	for _, task := range tasks {
-		if task.Status == models.Status(status) {
+		if task.Status == status {
 			filteredTasks = append(filteredTasks, task)
 		}
 	}
@@ -162,7 +162,7 @@ func SetStatus(id int, status string) error {
 	if err := models.ValidateStatus(status); err != nil {
 		return err
 	}
-	task.Status = models.Status(status)
+	task.Status = status
 	task.UpdatedAt = time.Now()
 	tasks[id-1] = task
 	if err = models.WriteTasksFile(tasks); err != nil {

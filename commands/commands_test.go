@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"task-tracker/models"
+	"tasker/models"
 	"testing"
 )
 
@@ -179,7 +179,7 @@ func TestSetStatus(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	if tasks[0].Status != models.StatusDone {
+	if tasks[0].Status != "done" {
 		t.Error(errors.New("task status should be done"))
 	}
 }

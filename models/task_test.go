@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"os"
 	"testing"
 )
@@ -49,5 +50,36 @@ func TestValidateStatus(t *testing.T) {
 	err = ValidateStatus("invalid")
 	if err == nil {
 		t.Errorf("ValidateStatus() error = %v", err)
+	}
+}
+
+func TestWriteTasksFile(t *testing.T) {
+	deleteTasksFile()
+	task := Task{
+		ID:          1,
+		Description: t.Name(),
+	}
+	tasks := []Task{task}
+	err := WriteTasksFile(tasks)
+	if err != nil {
+		t.Errorf("WriteTasksFile() error = %v", err)
+	}
+	if _, err := os.Stat("tasks.json"); err != nil {
+		t.Errorf("tasks.json file not found")
+	}
+	data, err := os.ReadFile("tasks.json")
+	if err != nil {
+		t.Errorf("Error reading tasks.json file: %v", err)
+	}
+	if len(data) == 0 {
+		t.Errorf("tasks.json file is empty")
+	}
+	tasksFromFile := []Task{}
+	err = json.Unmarshal(data, &tasksFromFile)
+	if err != nil {
+		t.Errorf("Error unmarshalling tasks.json file: %v", err)
+	}
+	if len(tasksFromFile) == 0 {
+		t.Errorf("tasks.json file is empty")
 	}
 }

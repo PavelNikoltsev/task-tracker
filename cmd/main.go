@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"task-tracker/commands"
-	"task-tracker/models"
+	"tasker/commands"
 )
 
 func getID(stringID string) (int, error) {
@@ -32,7 +31,8 @@ func help() {
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("It is necessary to transmit a command.")
+		fmt.Println("Please provide a command.")
+		help()
 		return
 	}
 	command := os.Args[1]
@@ -121,7 +121,7 @@ func main() {
 			fmt.Println(err)
 			break
 		}
-		err = commands.SetStatus(taskID, string(models.StatusDone))
+		err = commands.SetStatus(taskID, "done")
 		if err != nil {
 			fmt.Println(err)
 			break
@@ -136,7 +136,7 @@ func main() {
 			fmt.Println(err)
 			break
 		}
-		err = commands.SetStatus(taskID, string(models.StatusTodo))
+		err = commands.SetStatus(taskID, "todo")
 		if err != nil {
 			fmt.Println(err)
 			break
@@ -151,7 +151,7 @@ func main() {
 			fmt.Println(err)
 			break
 		}
-		err = commands.SetStatus(taskID, string(models.StatusInProgress))
+		err = commands.SetStatus(taskID, "in-progress")
 		if err != nil {
 			fmt.Println(err)
 			break

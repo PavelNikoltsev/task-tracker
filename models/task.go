@@ -7,14 +7,6 @@ import (
 	"time"
 )
 
-type Status string
-
-const (
-	StatusDone       Status = "done"
-	StatusTodo       Status = "todo"
-	StatusInProgress Status = "in-progress"
-)
-
 func ValidateStatus(status string) error {
 	switch status {
 	case "done", "todo", "in-progress":
@@ -27,7 +19,7 @@ func ValidateStatus(status string) error {
 type Task struct {
 	ID          int       `json:"id"`
 	Description string    `json:"description"`
-	Status      Status    `json:"status"`
+	Status      string    `json:"status"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
