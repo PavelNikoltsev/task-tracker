@@ -3,7 +3,7 @@
 
 Tasker is a command-line tool written in Go for managing your todo tasks. With Tasker, you can add, update, delete, and list tasks, as well as manage their statuses (e.g., done, todo, in progress).
 
-Project idea from <https://roadmap.sh/projects/task-tracker>
+Project idea from <https://roadmap.sh/projects/github-user-activity>
 
 ## Features
 
