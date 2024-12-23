@@ -99,13 +99,3 @@ Example:
   ```bash
   ./tasker delete 2
   ```
-
-## Testing
-
-To run the tests, use the following command:
-
-```bash
-make test
-```
-
-This will run tests in the `commands` and `models` directories.
